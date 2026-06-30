@@ -17,6 +17,9 @@
     npm i prisma --save-dev
     npm i @prisma/client
 
+//jwt: npm i jsonwebtoken
+
+// to generate token: gitbash--> openssl rand -base64 32 -->enter
 
 
 
