@@ -1,11 +1,13 @@
 // src/server.js
-import express from "express"; // Uncommented this!
+import express from "express";
+import cookieParser from "cookie-parser";
 import { config } from 'dotenv';
 import { connectDB, disconnectDB } from './config/db.js';
 
 // Import routes
 import movieRoutes from './routes/movieRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import watchlistRoutes from './routes/watchlistRoutes.js';
 
 config(); // Load environment variables
 connectDB(); // Connect to the database
@@ -13,12 +15,14 @@ connectDB(); // Connect to the database
 const app = express();
 
 //body parsing middleware
-app.use (express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // API routes
 app.use('/movies', movieRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", watchlistRoutes);
 
 const port = 5001;
 
